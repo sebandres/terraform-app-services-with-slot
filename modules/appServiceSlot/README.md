@@ -1,0 +1,1 @@
+Module to create an app service slot with custom domain and SSL binding.

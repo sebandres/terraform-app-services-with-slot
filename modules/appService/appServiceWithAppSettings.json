@@ -1,0 +1,81 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "hostingPlanName": {
+      "type": "string"
+    },
+    "siteName": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "subDomain": {
+      "type": "string"
+    },
+    "applicationInsights_InstrumentationKey": {
+      "type": "string"
+    },
+    "appSettings1": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[parameters('siteName')]",
+      "type": "Microsoft.Web/sites",
+      "location": "[parameters('location')]",
+      "tags": {
+        "displayName": "Website"
+      },
+      "properties": {
+        "name": "[parameters('siteName')]"
+      },
+      "resources": [
+        {
+          "name": "appsettings",
+          "type": "config",
+          "apiVersion": "2015-08-01",
+          "dependsOn": [
+            "[concat('Microsoft.Web/sites/', parameters('siteName'))]"
+          ],
+          "tags": {
+            "displayName": "WebAppSettings"
+          },
+          "properties": {
+            "appSettings1": "[parameters('appSettings1')]",
+            "applicationInsights_InstrumentationKey": "[parameters('applicationInsights_InstrumentationKey')]"
+          }
+        },
+        {
+          "apiVersion": "2015-08-01",
+          "name": "connectionstrings",
+          "type": "config",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/Sites', parameters('siteName'))]"
+          ],
+          "properties": {}
+        },
+        {
+          "name": "slotConfigNames",
+          "type": "config",
+          "apiVersion": "2015-08-01",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/sites', parameters('siteName'))]"
+          ],
+          "tags": {
+            "displayName": "slotConfigNames"
+          },
+          "properties": {
+            "appSettingNames": [
+              "appSettings1"
+            ],
+            "connectionStringNames": []
+          }
+        }
+      ]
+    }
+  ]
+}

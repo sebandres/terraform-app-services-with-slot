@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>Infrastructure</id>
+    <version>1.0.0</version>
+    <authors>Sebastian Andres</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Infrastructure.</description>
+  </metadata>
+  <files>
+    <file src="*.*" exclude="**\*.nuspec;**\*.nupkg;**\.terraform" />
+    <file src="import\**" target="import" exclude="**\*.nuspec;**\*.nupkg;**\.terraform" />
+    <file src="modules\**" target="modules" exclude="**\*.nuspec;**\*.nupkg;**\.terraform" />
+    <file src="variables\**" target="variables" exclude="**\*.nuspec;**\*.nupkg;**\.terraform" />
+  </files>
+</package>

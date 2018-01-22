@@ -1,0 +1,1 @@
+Module to create an app service with custom domain and SSL binding and Application Insights

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "slotName": {
+      "type": "string"
+    },
+    "siteName": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "subDomain_slot": {
+      "type": "string"
+    },
+    "authenticationAuthority": {
+      "type": "string"
+    },
+    "authenticationClient": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2016-08-01",
+      "name": "[concat(parameters('siteName'), '/', parameters('slotName'))]",
+      "type": "Microsoft.Web/sites/slots",
+      "tags": {
+        "displayName": "[parameters('slotName')]"
+      },
+      "properties": {},
+      "location": "[parameters('location')]",
+      "resources": [
+        {
+          "name": "appsettings",
+          "type": "config",
+          "apiVersion": "2016-08-01",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/Sites/slots', parameters('siteName'), parameters('slotName'))]"
+          ],
+          "tags": {
+            "displayName": "WebAppSettings"
+          },
+          "properties": {
+            "Authentication_Client": "[parameters('authenticationClient')]",
+            "Authentication_Authority": "[parameters('authenticationAuthority')]"
+          }
+        },
+        {
+          "apiVersion": "2016-08-01",
+          "name": "connectionstrings",
+          "type": "config",
+          "dependsOn": [
+            "[resourceId('Microsoft.Web/Sites/slots', parameters('siteName'), parameters('slotName'))]"
+          ],
+          "properties": {}
+        }
+      ]
+    },
+    {
+      "apiVersion": "2016-08-01",
+      "name": "[concat(parameters('siteName'), '/', parameters('slotName'), '/', parameters('subDomain_slot'))]",
+      "type": "Microsoft.Web/sites/slots/hostNameBindings",
+      "location": "[parameters('location')]",
+      "properties": {
+        "domainId": null,
+        "hostNameType": "Verified",
+        "sslState": "SniEnabled",
+        "customHostNameDnsRecordType": "CName",
+        "siteName": "[concat(parameters('siteName'), '/', parameters('slotName'))]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/Sites/slots', parameters('siteName'), parameters('slotName'))]"
+      ]
+    }
+  ]
+}
