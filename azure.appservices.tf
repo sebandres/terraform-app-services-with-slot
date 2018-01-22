@@ -11,7 +11,7 @@ module "rootAppService" {
   azure_appservice_plan     = "${var.azure_appservice_plan}"
   azure_location            = "${var.azure_location}"
   azure_resource_group_name = "${azurerm_resource_group.appservicesResourceGroup.name}"
-  appSettings1              = "ProductionValue"
+  appSetting1               = "ProductionValue"
 }
 
 module "slotAppService" {
@@ -23,5 +23,6 @@ module "slotAppService" {
   azure_appservice_plan     = "${var.azure_appservice_plan}"
   azure_location            = "${var.azure_location}"
   azure_resource_group_name = "${azurerm_resource_group.appservicesResourceGroup.name}"
-  appSettings1              = "${var.appSettings1}"
+  appSetting1               = "${var.appSetting1}"
+  depends_on                = "${module.rootAppService.webapp_name}"
 }

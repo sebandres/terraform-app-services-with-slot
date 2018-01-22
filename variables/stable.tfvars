@@ -1,3 +1,3 @@
 environment = "Stable"
 
-appSettings1 = "TestSettingStable"
+appSetting1 = "TestSettingStable"

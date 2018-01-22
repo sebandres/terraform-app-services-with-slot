@@ -29,7 +29,12 @@ variable "ignore" {
   type = "string"
 }
 
-variable "appSettings1" {
+variable "appSetting1" {
   type        = "string"
   description = "My slot variable"
+}
+
+variable "depends_on" {
+  type        = "string"
+  description = "Parent module this slot depends on"
 }

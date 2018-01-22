@@ -25,7 +25,7 @@ variable "azure_resource_group_name" {
   type = "string"
 }
 
-variable "appSettings1" {
+variable "appSetting1" {
   type        = "string"
   description = "My main site variable"
 }

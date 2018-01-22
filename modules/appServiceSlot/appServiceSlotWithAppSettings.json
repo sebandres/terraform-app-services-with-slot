@@ -11,13 +11,10 @@
     "location": {
       "type": "string"
     },
-    "subDomain_slot": {
+    "appSetting1": {
       "type": "string"
     },
-    "authenticationAuthority": {
-      "type": "string"
-    },
-    "authenticationClient": {
+    "depends_on": {
       "type": "string"
     }
   },
@@ -43,8 +40,7 @@
             "displayName": "WebAppSettings"
           },
           "properties": {
-            "Authentication_Client": "[parameters('authenticationClient')]",
-            "Authentication_Authority": "[parameters('authenticationAuthority')]"
+            "appSetting1": "[parameters('appSetting1')]"
           }
         },
         {
@@ -56,22 +52,6 @@
           ],
           "properties": {}
         }
-      ]
-    },
-    {
-      "apiVersion": "2016-08-01",
-      "name": "[concat(parameters('siteName'), '/', parameters('slotName'), '/', parameters('subDomain_slot'))]",
-      "type": "Microsoft.Web/sites/slots/hostNameBindings",
-      "location": "[parameters('location')]",
-      "properties": {
-        "domainId": null,
-        "hostNameType": "Verified",
-        "sslState": "SniEnabled",
-        "customHostNameDnsRecordType": "CName",
-        "siteName": "[concat(parameters('siteName'), '/', parameters('slotName'))]"
-      },
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/Sites/slots', parameters('siteName'), parameters('slotName'))]"
       ]
     }
   ]

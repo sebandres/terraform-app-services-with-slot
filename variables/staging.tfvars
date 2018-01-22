@@ -1,3 +1,3 @@
 environment = "Staging"
 
-appSettings1 = "TestSettingStaging"
+appSetting1 = "TestSettingStaging"

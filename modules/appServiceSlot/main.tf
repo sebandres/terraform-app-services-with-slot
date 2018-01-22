@@ -7,10 +7,11 @@ resource "azurerm_template_deployment" "webappslot" {
 
   # these key-value pairs are passed into the ARM Template's `parameters` block
   parameters {
-    "slotName"     = "${var.environment}"
-    "siteName"     = "${var.application_name}"
-    "location"     = "${var.azure_location}"
-    "appSettings1" = "${var.appSettings1}"
+    slotName    = "${var.environment}"
+    siteName    = "${var.application_name}"
+    location    = "${var.azure_location}"
+    appSetting1 = "${var.appSetting1}"
+    depends_on  = "${var.depends_on}"
   }
 
   deployment_mode = "Incremental"

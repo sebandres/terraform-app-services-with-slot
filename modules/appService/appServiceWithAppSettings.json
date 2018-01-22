@@ -11,13 +11,10 @@
     "location": {
       "type": "string"
     },
-    "subDomain": {
-      "type": "string"
-    },
     "applicationInsights_InstrumentationKey": {
       "type": "string"
     },
-    "appSettings1": {
+    "appSetting1": {
       "type": "string"
     }
   },
@@ -45,7 +42,7 @@
             "displayName": "WebAppSettings"
           },
           "properties": {
-            "appSettings1": "[parameters('appSettings1')]",
+            "appSetting1": "[parameters('appSetting1')]",
             "applicationInsights_InstrumentationKey": "[parameters('applicationInsights_InstrumentationKey')]"
           }
         },
@@ -70,7 +67,7 @@
           },
           "properties": {
             "appSettingNames": [
-              "appSettings1"
+              "appSetting1"
             ],
             "connectionStringNames": []
           }

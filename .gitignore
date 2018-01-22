@@ -1,5 +1,6 @@
 # Compiled files
 *.tfstate
+*.tfstate.lock.info
 *.tfstate.backup
 *.plan
 

@@ -14,7 +14,7 @@ variable aws_region {
 # What the application name is
 variable application_name {
   type    = "string"
-  default = "TerraformExample"
+  default = "TerraformAppSettingsExample"
 }
 
 # Infrastructure Version
@@ -28,13 +28,13 @@ variable "environment" {
   type = "string"
 }
 
-# appSettings1
-variable "appSettings1" {
+# appSetting1
+variable "appSetting1" {
   type    = "string"
   default = ""
 }
 
 variable "azure_appservice_plan" {
   type    = "string"
-  default = "AustraliaEastPlan"
+  default = "DotNetPublic"
 }

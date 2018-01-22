@@ -18,7 +18,7 @@ resource "azurerm_template_deployment" "webapp" {
     "siteName"                               = "${var.application_name}"
     "location"                               = "${var.azure_location}"
     "applicationInsights_InstrumentationKey" = "${azurerm_application_insights.webapp.instrumentation_key}"
-    "appSettings1"                           = "${var.appSettings1}"
+    "appSetting1"                            = "${var.appSetting1}"
   }
 
   deployment_mode = "Incremental"
